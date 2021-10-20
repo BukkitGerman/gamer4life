@@ -28,14 +28,6 @@ class UserSeeder extends Seeder
             'password' => password_hash('toor',1),
         ]);
 
-        $role = Role::create(['name' => 'admin']);
-        $permission = Permission::create(['name' => 'access backend']);
-        $role->givePermissionTo($permission);
-        $user->assignRole($role);
-
-        $role = Role::create(['name' => 'test']);
-        $role->givePermissionTo($permission);
-        $user->assignRole($role);
 
        User::factory()->count(700)->create();
     }

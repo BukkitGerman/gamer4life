@@ -20,7 +20,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/', [AdminController::class, 'index'])
             ->name('backend');
 
-        Route::prefix('/users')->group(function() {
+        Route::prefix('/users')->middleware(['role:admin|permission:access user management'])->group(function() {
             // GET ROUTES
             Route::get('/', [UserController::class, 'index'])
                 ->name('backend.users.list');
