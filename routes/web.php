@@ -16,13 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::middleware(['auth'])->group(function(){
-    Route::prefix('/backend')->group(function() {
+    Route::prefix('/backend')->middleware(['role:admin|permission:access backend'])->group(function() {
         Route::get('/', [AdminController::class, 'index'])
             ->name('backend');
 
         Route::prefix('/users')->group(function() {
+            // GET ROUTES
             Route::get('/', [UserController::class, 'index'])
                 ->name('backend.users.list');
+            Route::get('/create', [UserController::class, 'create'])
+                ->name('backend.users.create');
+
+
+            //POST ROUTES
+            Route::POST('/', [UserController::class, 'index'])
+                ->name('backend.users.list.search');
         });
     });
 });

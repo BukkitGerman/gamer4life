@@ -6,7 +6,7 @@
                     <i class="fas fa-home fa-lg mr-2"></i>
                     <span>{{ __('dashboard') }}</span>
                 </a>
-                    @include('components.custom.sidebar_collapse',['collapseId' => 'UserSettingsCollapse', 'prefix' => 'users', 'collapseItems' =>[['route' => 'backend.users.list','translationTag' => 'userlist',  'icon' => 'fas fa-address-book' ],['route' => 'backend.users.list','translationTag' => 'test','icon' => 'fas fa-copy'],]])
+                    @include('components.custom.sidebar_collapse',['collapseId' => 'UserSettingsCollapse', 'prefix' => 'users', 'collapseItems' =>[['route' => 'backend.users.list','translationTag' => 'userlist',  'icon' => 'fas fa-users' ],['route' => 'backend.users.create','translationTag' => 'create','icon' => 'fas fa-user-plus'],]])
             </nav>
         </div>
         <div class="col-12 col-md-9 col-xl-10">
