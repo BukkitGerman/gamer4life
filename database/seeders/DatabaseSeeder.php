@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         $role = Role::query()
             ->where('name', 'admin')
             ->first();
-        $user->assignRole($role);   
+        $user->assignRole($role);
 
         $this->command->info('Seeding successful.');
     }

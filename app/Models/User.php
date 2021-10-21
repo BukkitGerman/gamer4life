@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     public function getEmailStatusIcon() : string
     {
-        $this->hasVerifiedEmail() ? $iconClasses = 'fas fa-check-circle text-success' :  $iconClasses = 'fas fa-check-circle text-muted';
+        $this->hasVerifiedEmail() ? $iconClasses = 'fas fa-check-circle text-success' :  $iconClasses = 'fas fa-times-circle text-muted';
         return '<i class="' . $iconClasses . '" data-bs-toggle="tooltip" title="' . $this->getEmailStatusText() . '"></i>';
     }
 }
