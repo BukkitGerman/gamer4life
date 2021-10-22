@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -54,9 +55,19 @@ class User extends Authenticatable
         return $roleModels;
     }
 
-    public function getEmailStatusText()
+    public function getEmailVerifiedAt() : string
     {
-        $this->hasVerifiedEmail() ? $text = __('email_verified') :  $text = __('email_not_verified');
+        return is_null($this->email_verified_at)
+                ?
+             ""
+                :
+            $text = Carbon::parse($this->email_verified_at)->format('d.m.Y H:i');
+
+    }
+
+    public function getEmailStatusText() : string
+    {
+        $this->hasVerifiedEmail() ? $text = __('email_verified_at') . " " . $this->getEmailVerifiedAt() :  $text = __('email_not_verified');
         return $text;
     }
 
