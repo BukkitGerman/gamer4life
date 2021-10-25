@@ -26,6 +26,8 @@ Route::middleware(['auth'])->group(function(){
                 ->name('backend.users.list');
             Route::get('/create', [UserController::class, 'create'])
                 ->name('backend.users.create');
+            Route::post('/create', [UserController::class, 'store'])
+                ->name('backend.users.store');
 
 
             //POST ROUTES
