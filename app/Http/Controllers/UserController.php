@@ -26,7 +26,7 @@ class UserController extends Controller
         return view('backend.users.create');
     }
 
-    public function Store () : RedirectResponse
+    public function store () : RedirectResponse
     {
         return redirect()->back()->with('status', [
             'type' => 'success',
