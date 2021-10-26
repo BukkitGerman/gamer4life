@@ -22,13 +22,26 @@
                             </div>
                         @endif
                         <div class="card-body table-responsive">
-                            <div class="form-row col-12 col-md-12 col-lg-12 col-xl-12 pr-1">
-                                @include('components.custom.username', ['classes' => 'col-12 col-md-12 col-lg-6 col-xl-3', 'labelkey' => 'username.key'])
-                                @include('components.custom.email', ['classes' => 'col-12 col-md-12 col-lg-6 col-xl-3', 'labelkey' => 'email.key'])
-                            </div>
-                            <div class="form-row col-12 col-md-12 col-lg-12 col-xl-12 pr-1">
-                                @include('components.custom.checkbox_switch', ['classes' => 'col-6 col-md-6 col-lg-2 col-xl-2','labelkey' => 'force.user.to.set.password','id' => 'forceToSetPassword', 'name' => 'forceToSetPassword'])
-                            </div>
+                            <form method="POST" action="{{ route('backend.users.store') }}">
+                                <div class="form-row col-12 col-md-12 col-lg-12 col-xl-12 justify-content-around">
+                                    @include('components.custom.username', ['classes' => 'col-12 col-md-12 col-lg-6 col-xl-3', 'labelkey' => 'username.key'])
+                                    @include('components.custom.email', ['classes' => 'col-12 col-md-12 col-lg-6 col-xl-3', 'labelkey' => 'email.key'])
+                                </div>
+                                <div class="form-row col-12 col-md-12 col-lg-12 col-xl-12 justify-content-around">
+                                    @include('components.custom.input', ['classes' => 'col-12 col-md-6 col-lg-6 col-xl-3','labelkey' => 'password.key','id' => 'password', 'name' => 'password', 'type' => 'password'])
+                                    @include('components.custom.input', ['classes' => 'col-12 col-md-6 col-lg-6 col-xl-3','labelkey' => 'password_confrim.key','id' => 'password_confirm', 'name' => 'password_confirm', 'type' => 'password'])
+                                </div>
+                                <div class="form-row col-12 col-md-12 col-lg-12 col-xl-12 justify-content-around">
+                                    <div class="col-12 col-md-12 col-lg-6 col-xl-3 d-flex justify-content-center align-content-center">
+                                        @include('components.custom.checkbox_switch', ['classes' => 'col-12 col-md-12 col-lg-12 col-xl-12','labelkey' => 'force.user.to.set.password','id' => 'forceToSetPassword', 'name' => 'forceToSetPassword'])
+                                    </div>
+                                    @include('components.custom.username', ['classes' => 'col-12 col-md-12 col-lg-6 col-xl-3', 'labelkey' => 'username.key'])
+                                </div>
+                                <div class="form-row col-12 col-md-12 col-lg-12 col-xl-12 justify-content-around mt-3">
+                                    @include('components.custom.link', ['classes' => 'col-12 col-md-6 col-lg-3 col-xl-2 btn btn-secondary mr-1', 'route' => 'backend.users.list', 'translationKey' => 'cancel.key'])
+                                    @include('components.custom.button', ['classes' => 'col-12 col-md-6 col-lg-3 col-xl-2 btn-primary', 'type' => 'submit', 'translationKey' => 'erstellen.key'])
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
