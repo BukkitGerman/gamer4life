@@ -53,7 +53,7 @@ class UserController extends Controller
         if($request->get('query'))
             $preparedQ = '%' . str_replace(' ', '%', $request->get('query')) . '%';
 
-        return User::query()
+        return User::withTrashed()
             ->when($request->get('query'), function (Builder $query) use ($preparedQ) {
                 $query->where('id', 'LIKE', $preparedQ)
                     ->orwhere('name', 'LIKE', $preparedQ)
