@@ -21,11 +21,6 @@
                     </div>
 
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
                         <div class="card-body table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -49,12 +44,17 @@
                                         <td >{{ $user->email }}</td>
                                         <td class="text-center">{!! $user->getEmailStatusIcon() !!}</td>
                                         <td class="d-flex justify-content-end align-items-center">
-                                            <button class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#RolesAndPermissionModal{{ $user->getKey() }}"><i class="fas fa-key"></i></button>
-                                            <a class="btn btn-sm btn-primary mr-1" href=""><i class="fas fa-edit"></i></a>
-                                            @if(auth()->user()->getKey() === $user->getKey())
-                                                <a class="btn btn-sm btn-secondary mr-1" data-bs-toggle="tooltip" title="{{ __('cant.delete.own.user') }}" disabled><i class="fas fa-trash-alt"></i></a>
+                                            @if($user->deleted_at === null)
+                                                <button class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#RolesAndPermissionModal{{ $user->getKey() }}"><i class="fas fa-key"></i></button>
+                                                <a class="btn btn-sm btn-primary mr-1" href=""><i class="fas fa-edit"></i></a>
+                                                @if(auth()->user()->getKey() === $user->getKey())
+                                                    <a class="btn btn-sm btn-secondary mr-1" data-bs-toggle="tooltip" title="{{ __('cant.delete.own.user') }}" disabled><i class="fas fa-trash-alt"></i></a>
+                                                @else
+                                                    <a class="btn btn-sm btn-danger delete mr-1" href="{{ route('backend.users.delete', $user) }}"><i class="fas fa-trash-alt"></i></a>
+                                                @endif
                                             @else
-                                                <a class="btn btn-sm btn-danger delete mr-1" href=""><i class="fas fa-trash-alt"></i></a>
+                                                <a></a>
+                                                <a class="btn btn-sm btn-success mr-1" href="{{ route('backend.users.restore', ['id' => $user->getKey()])}}"><i class="fas fa-trash-restore-alt"></i></a>
                                             @endif
                                         </td>
                                     </tr>

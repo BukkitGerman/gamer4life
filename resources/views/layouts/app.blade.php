@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light bg-gradient">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="z-index: 1000">
             <div class="container-fluid">
@@ -80,6 +80,15 @@
         </nav>
         @includeWhen(str_contains( request()->route()->getPrefix(), 'backend') ,'layouts.backend.sidebar')
         @if(!str_contains( request()->route()->getPrefix(), 'backend'))
+            @if (session('status') && is_array(session('status')) && isset(session('status')['type']) && isset(session('status')['msg']))
+                <div style="z-index: 1200; position: absolute;top: 1%;left: 50%;transform: translate(-50%, -50%);" class="alert alert-{{ session('status')['type'] ?? '' }} alert-dismissible fade show" role="alert">
+                    {{ session('status')['msg'] ?? '' }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+            @endif
             <main class="py-4">
                 @yield('content')
             </main>

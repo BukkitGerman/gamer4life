@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use function PHPUnit\Framework\isEmpty;
 
@@ -44,6 +45,36 @@ class UserController extends Controller
         return redirect()->back()->with('status', [
             'type' => 'success',
             'msg' => __('user.edit.successful')
+        ]);
+    }
+
+    public function delete(User $user) : RedirectResponse
+    {
+        if ($user->getKey() === Auth::user()->getAuthIdentifier())
+            return redirect()->back()->with('status', [
+                'type' => 'danger',
+                'msg' => __('user.delete.yourself.not_possible')
+            ]);
+
+        User::query()
+            ->whereKey($user->getKey())
+            ->delete();
+
+        return redirect()->back()->with('status', [
+            'type' => 'success',
+            'msg' => __('user.delete.successful')
+        ]);
+    }
+
+    public function restore(int $id) : RedirectResponse
+    {
+        User::withTrashed()
+            ->whereKey($id)
+            ->restore();
+
+        return redirect()->back()->with('status',[
+            'type' => 'success',
+            'msg' => __('user.restore.successful'),
         ]);
     }
 

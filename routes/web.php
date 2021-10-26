@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Route::middleware(['auth'])->group(function(){
     Route::prefix('/backend')->middleware(['role:admin|permission:access backend'])->group(function() {
         Route::get('/', [AdminController::class, 'index'])
@@ -29,6 +34,11 @@ Route::middleware(['auth'])->group(function(){
             Route::post('/create', [UserController::class, 'store'])
                 ->name('backend.users.store');
 
+            Route::get('/delete/{user}', [UserController::class, 'delete'])
+                ->name('backend.users.delete');
+            Route::get('/restore/{id}', [UserController::class, 'restore'])
+                ->name('backend.users.restore');
+
 
             //POST ROUTES
             Route::POST('/', [UserController::class, 'index'])
@@ -37,8 +47,6 @@ Route::middleware(['auth'])->group(function(){
     });
 });
 
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
