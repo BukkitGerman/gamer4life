@@ -1,4 +1,4 @@
-<div class="form-group {{ $classes ?? '' }}">
+<div class="d-flex justify-content-center align-items-center {{ $classes ?? '' }}">
         <div class="custom-control custom-switch custom-control-inline">
             <input id="{{ $id }}" class="custom-control-input" type="checkbox" name="{{ $name }}">
             <label class="custom-control-label" for="{{ $id }}">{{ __($labelkey) }}</label>
