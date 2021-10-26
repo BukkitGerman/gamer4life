@@ -22,8 +22,12 @@
                             </div>
                         @endif
                         <div class="card-body table-responsive">
-                            <div class="form-row col-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="form-row col-12 col-md-12 col-lg-12 col-xl-12 pr-1">
                                 @include('components.custom.username', ['classes' => 'col-12 col-md-12 col-lg-6 col-xl-3', 'labelkey' => 'username.key'])
+                                @include('components.custom.email', ['classes' => 'col-12 col-md-12 col-lg-6 col-xl-3', 'labelkey' => 'email.key'])
+                            </div>
+                            <div class="form-row col-12 col-md-12 col-lg-12 col-xl-12 pr-1">
+                                @include('components.custom.checkbox_switch', ['classes' => 'col-6 col-md-6 col-lg-2 col-xl-2','labelkey' => 'force.user.to.set.password','id' => 'forceToSetPassword', 'name' => 'forceToSetPassword'])
                             </div>
                         </div>
                     </div>
