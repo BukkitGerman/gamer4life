@@ -23,7 +23,7 @@
                         @endif
                         <div class="card-body table-responsive">
                             <div class="form-row col-12 col-md-12 col-lg-12 col-xl-12">
-                                @include('components.custom.username', ['classes' => 'col-12 col-md-12 col-lg-6 col-xl-6', 'labelkey' => 'username.key'])
+                                @include('components.custom.username', ['classes' => 'col-12 col-md-12 col-lg-6 col-xl-3', 'labelkey' => 'username.key'])
                             </div>
                         </div>
                     </div>
